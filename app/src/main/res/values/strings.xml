@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">RunningApp</string>
+    <string-array name="filter_options">
+        <item>Date</item>
+        <item>Running Time</item>
+        <item>Distance</item>
+        <item>Average Speed</item>
+        <item>Calories Burned</item>
+    </string-array>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">ENTER YOUR API KEY HERE</string>
+    <string name="description_no_available">Description no available</string>
+    <string name="date">DATE</string>
+    <string name="time">TIME</string>
+    <string name="distance">DISTANCE</string>
+    <string name="avgspeed">AVGSPEED</string>
+    <string name="calories">CALORIES</string>
+    <string name="initial_time">00:00:00:00</string>
+    <string name="start">Start</string>
+    <string name="finish_run">Finish Run</string>
+    <string name="let_s_go_username">Let\'s go, USERNAME!</string>
+    <string name="total_distance">Total Distance</string>
+    <string name="initial_kilometers">0km</string>
+    <string name="total_time">Total Time</string>
+    <string name="initial_total_time">00:00:00</string>
+    <string name="total_calories_burned">Total Calories Burned</string>
+    <string name="initial_calories">0kcal</string>
+    <string name="average_speed">Average Speed</string>
+    <string name="initial_kilometers_for_hour">0km/h</string>
+    <string name="welcome_message">Welcome!\nPlease enter your name and weight.</string>
+    <string name="your_name">Your Name</string>
+    <string name="your_weight">Your Weight</string>
+    <string name="kg">kg</string>
+    <string name="continued">Continue</string>
+    <string name="apply_changes">Apply Changes</string>
+    <string name="sort_by">Sort by:</string>
+    <string name="running_app">Running App</string>
 </resources>
