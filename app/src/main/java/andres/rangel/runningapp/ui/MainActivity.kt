@@ -1,5 +1,6 @@
-package andres.rangel.runningapp
+package andres.rangel.runningapp.ui
 
+import andres.rangel.runningapp.R
 import andres.rangel.runningapp.db.RunDao
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        println(runDao.hashCode())
     }
 }
