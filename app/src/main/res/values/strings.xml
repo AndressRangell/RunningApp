@@ -34,4 +34,7 @@
     <string name="apply_changes">Apply Changes</string>
     <string name="sort_by">Sort by:</string>
     <string name="running_app">Running App</string>
+    <string name="your_runs">Your Runs</string>
+    <string name="statistics">Statistics</string>
+    <string name="setting">Setting</string>
 </resources>

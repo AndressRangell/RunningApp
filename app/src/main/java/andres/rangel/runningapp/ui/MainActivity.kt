@@ -1,21 +1,37 @@
 package andres.rangel.runningapp.ui
 
 import andres.rangel.runningapp.R
-import andres.rangel.runningapp.db.RunDao
+import andres.rangel.runningapp.databinding.ActivityMainBinding
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var runDao: RunDao
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        binding.bottomNavigationView.setupWithNavController(
+            binding.navigationHostFragment.getFragment<NavHostFragment>().navController
+        )
+
+        binding.navigationHostFragment.getFragment<NavHostFragment>().navController
+            .addOnDestinationChangedListener { _, destination, _ ->
+                when (destination.id) {
+                    R.id.settingsFragment, R.id.runFragment, R.id.statisticsFragment ->
+                        binding.bottomNavigationView.visibility = View.VISIBLE
+                    else -> binding.bottomNavigationView.visibility = View.GONE
+                }
+            }
 
     }
 }
