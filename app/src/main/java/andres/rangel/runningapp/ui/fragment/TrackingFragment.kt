@@ -2,7 +2,10 @@ package andres.rangel.runningapp.ui.fragment
 
 import andres.rangel.runningapp.R
 import andres.rangel.runningapp.databinding.FragmentTrackingBinding
+import andres.rangel.runningapp.services.TrackingService
 import andres.rangel.runningapp.ui.viewmodel.MainViewModel
+import andres.rangel.runningapp.utils.Constants.ACTION_START_OR_RESUME_SERVICE
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,10 +36,20 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
 
         binding.mapView.onCreate(savedInstanceState)
 
+        binding.btnToggleRun.setOnClickListener {
+            sendCommandToService(ACTION_START_OR_RESUME_SERVICE)
+        }
+
         binding.mapView.getMapAsync {
             map = it
         }
     }
+
+    private fun sendCommandToService(action: String) =
+        Intent(requireContext(), TrackingService::class.java).also {
+            it.action = action
+            requireContext().startService(it)
+        }
 
     override fun onResume() {
         super.onResume()
