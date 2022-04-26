@@ -2,6 +2,8 @@ package andres.rangel.runningapp.ui
 
 import andres.rangel.runningapp.R
 import andres.rangel.runningapp.databinding.ActivityMainBinding
+import andres.rangel.runningapp.utils.Constants.ACTION_SHOW_TRACKING_FRAGMENT
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        navigateToTrackingFragmentIfNeeded(intent)
+
         setSupportActionBar(binding.toolbar)
         binding.bottomNavigationView.setupWithNavController(
             binding.navigationHostFragment.getFragment<NavHostFragment>().navController
@@ -34,4 +38,17 @@ class MainActivity : AppCompatActivity() {
             }
 
     }
+
+    private fun navigateToTrackingFragmentIfNeeded(intent: Intent?) {
+        if(intent?.action == ACTION_SHOW_TRACKING_FRAGMENT) {
+            binding.navigationHostFragment.getFragment<NavHostFragment>().navController
+                .navigate(R.id.action_global_trackingFragment)
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        navigateToTrackingFragmentIfNeeded(intent)
+    }
+
 }
