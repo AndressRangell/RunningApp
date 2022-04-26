@@ -70,10 +70,12 @@ class TrackingService : LifecycleService() {
                         startForegroundService()
                         isFirstRun = false
                     }else{
+                        startForegroundService()
                         Timber.d("Resuming service...")
                     }
                 }
                 ACTION_PAUSE_SERVICE -> {
+                    pauseService()
                     Timber.d("Paused service")
                 }
                 ACTION_STOP_SERVICE -> {
@@ -82,6 +84,10 @@ class TrackingService : LifecycleService() {
             }
         }
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    private fun pauseService() {
+        isTracking.postValue(false)
     }
 
     @SuppressLint("MissingPermission")
@@ -111,7 +117,6 @@ class TrackingService : LifecycleService() {
                 result.locations.let { locations ->
                     for(location in locations) {
                         addPathPoint(location)
-                        Timber.d("New location: ${location.latitude}, ${location.longitude}")
                     }
                 }
             }
