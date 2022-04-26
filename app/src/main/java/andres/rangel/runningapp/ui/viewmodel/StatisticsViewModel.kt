@@ -8,8 +8,7 @@ import javax.inject.Inject
 @HiltViewModel
 class StatisticsViewModel @Inject constructor(
     val mainRepository: MainRepository
-): ViewModel() {
-
+) : ViewModel() {
 
 
 }

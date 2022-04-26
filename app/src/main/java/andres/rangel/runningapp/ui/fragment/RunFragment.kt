@@ -21,7 +21,7 @@ import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 
 @AndroidEntryPoint
-class RunFragment: Fragment(R.layout.fragment_run), EasyPermissions.PermissionCallbacks {
+class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionCallbacks {
 
     private lateinit var binding: FragmentRunBinding
     private val viewModel: MainViewModel by viewModels()
@@ -47,10 +47,10 @@ class RunFragment: Fragment(R.layout.fragment_run), EasyPermissions.PermissionCa
     }
 
     private fun requestPermissions() {
-        if(TrackingUtility.hasLocationPermissions(requireContext())){
+        if (TrackingUtility.hasLocationPermissions(requireContext())) {
             return
         }
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             EasyPermissions.requestPermissions(
                 this,
                 "You need to accept location permissions to use this app.",
@@ -58,7 +58,7 @@ class RunFragment: Fragment(R.layout.fragment_run), EasyPermissions.PermissionCa
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION
             )
-        }else {
+        } else {
             EasyPermissions.requestPermissions(
                 this,
                 "You need to accept location permissions to use this app.",
@@ -76,9 +76,9 @@ class RunFragment: Fragment(R.layout.fragment_run), EasyPermissions.PermissionCa
     }
 
     override fun onPermissionsDenied(requestCode: Int, permissions: MutableList<String>) {
-        if(EasyPermissions.somePermissionPermanentlyDenied(this, permissions)){
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, permissions)) {
             AppSettingsDialog.Builder(this).build().show()
-        }else {
+        } else {
             requestPermissions()
         }
     }

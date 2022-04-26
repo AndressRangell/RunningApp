@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="andres.rangel.runningapp.ui.fragment.StaticticsFragment"
+        android:name="andres.rangel.runningapp.ui.fragment.StatisticsFragment"
         android:label="StaticticsFragment" />
     <fragment
         android:id="@+id/trackingFragment"

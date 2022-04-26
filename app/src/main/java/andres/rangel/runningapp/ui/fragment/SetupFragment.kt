@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
-class SetupFragment: Fragment(R.layout.fragment_setup) {
+class SetupFragment : Fragment(R.layout.fragment_setup) {
 
     private lateinit var binding: FragmentSetupBinding
 
