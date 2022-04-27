@@ -10,6 +10,8 @@ import andres.rangel.runningapp.utils.Constants.ACTION_START_OR_RESUME_SERVICE
 import andres.rangel.runningapp.utils.Constants.MAP_ZOOM
 import andres.rangel.runningapp.utils.Constants.POLYLINE_COLOR
 import andres.rangel.runningapp.utils.Constants.POLYLINE_WIDTH
+import andres.rangel.runningapp.utils.TrackingUtility
+import andres.rangel.runningapp.utils.TrackingUtility.getFormattedStopWatchTime
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -34,6 +36,8 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
     private var pathPoints = mutableListOf<Polyline>()
 
     private var map: GoogleMap? = null
+
+    private var currentTimeInMillis = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,6 +74,12 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
             pathPoints = it
             addLatestPolyline()
             moveCameraToUser()
+        }
+
+        TrackingService.timeRunInMillis.observe(viewLifecycleOwner) {
+            currentTimeInMillis = it
+            val formattedTime = getFormattedStopWatchTime(currentTimeInMillis, true)
+            binding.tvTimer.text = formattedTime
         }
     }
 
