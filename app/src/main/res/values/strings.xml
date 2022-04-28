@@ -37,4 +37,5 @@
     <string name="your_runs">Your Runs</string>
     <string name="statistics">Statistics</string>
     <string name="setting">Setting</string>
+    <string name="cancel_run">Cancel Run</string>
 </resources>
