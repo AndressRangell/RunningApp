@@ -5,6 +5,7 @@ import andres.rangel.runningapp.adapters.RunAdapter
 import andres.rangel.runningapp.databinding.FragmentRunBinding
 import andres.rangel.runningapp.ui.viewmodel.MainViewModel
 import andres.rangel.runningapp.utils.Constants.REQUEST_CODE_LOCATION_PERMISSIONS
+import andres.rangel.runningapp.utils.SortType
 import andres.rangel.runningapp.utils.TrackingUtility
 import android.Manifest
 import android.annotation.SuppressLint
@@ -14,6 +15,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
+import timber.log.Timber
 
 @AndroidEntryPoint
 class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionCallbacks {
@@ -46,7 +49,31 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
         requestPermissions()
         initRecyclerView()
 
-        viewModel.runSortedByDate.observe(viewLifecycleOwner) {
+        when (viewModel.sortType) {
+            SortType.DATE -> binding.spFilter.setSelection(0)
+            SortType.AVERAGE_SPEED -> binding.spFilter.setSelection(1)
+            SortType.DISTANCE -> binding.spFilter.setSelection(2)
+            SortType.RUNNING_TIME -> binding.spFilter.setSelection(3)
+            SortType.CALORIES_BURNED -> binding.spFilter.setSelection(4)
+        }
+        binding.spFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when (position) {
+                    0 -> viewModel.sortRuns(SortType.DATE)
+                    1 -> viewModel.sortRuns(SortType.AVERAGE_SPEED)
+                    2 -> viewModel.sortRuns(SortType.DISTANCE)
+                    3 -> viewModel.sortRuns(SortType.RUNNING_TIME)
+                    4 -> viewModel.sortRuns(SortType.CALORIES_BURNED)
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                Timber.d("onNothingSelected: No item selected")
+            }
+
+        }
+
+        viewModel.runs.observe(viewLifecycleOwner) {
             runAdapter.submitList(it)
         }
 

@@ -2,9 +2,9 @@
     <string name="app_name">RunningApp</string>
     <string-array name="filter_options">
         <item>Date</item>
-        <item>Running Time</item>
-        <item>Distance</item>
         <item>Average Speed</item>
+        <item>Distance</item>
+        <item>Running Time</item>
         <item>Calories Burned</item>
     </string-array>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyByz2xNvNg1tGAcA2cTUs-10Zdb7B2HAS4</string>
