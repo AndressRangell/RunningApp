@@ -1,6 +1,7 @@
 package andres.rangel.runningapp.ui.fragment
 
 import andres.rangel.runningapp.R
+import andres.rangel.runningapp.adapters.RunAdapter
 import andres.rangel.runningapp.databinding.FragmentRunBinding
 import andres.rangel.runningapp.ui.viewmodel.MainViewModel
 import andres.rangel.runningapp.utils.Constants.REQUEST_CODE_LOCATION_PERMISSIONS
@@ -16,6 +17,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
@@ -26,6 +28,8 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
     private lateinit var binding: FragmentRunBinding
     private val viewModel: MainViewModel by viewModels()
     private val className = "RunFragment"
+
+    private lateinit var runAdapter: RunAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,10 +44,21 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
         super.onViewCreated(view, savedInstanceState)
 
         requestPermissions()
+        initRecyclerView()
+
+        viewModel.runSortedByDate.observe(viewLifecycleOwner) {
+            runAdapter.submitList(it)
+        }
 
         binding.btnFavorites.setOnClickListener {
             findNavController().navigate(R.id.action_runFragment_to_trackingFragment)
         }
+    }
+
+    private fun initRecyclerView() = binding.rvRuns.apply {
+        runAdapter = RunAdapter()
+        adapter = runAdapter
+        layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun requestPermissions() {
