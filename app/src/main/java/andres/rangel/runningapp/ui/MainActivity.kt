@@ -40,10 +40,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-        viewModel.title.observe(this) {
-            binding.tvToolbarTitle.text = it
-        }
-
     }
 
     private fun navigateToTrackingFragmentIfNeeded(intent: Intent?) {

@@ -26,8 +26,6 @@ class SetupFragment : Fragment(R.layout.fragment_setup) {
 
     private lateinit var binding: FragmentSetupBinding
 
-    private val viewModel: MainViewModel by viewModels()
-
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
@@ -76,7 +74,7 @@ class SetupFragment : Fragment(R.layout.fragment_setup) {
             .putBoolean(KEY_FIRST_TIME_TOGGLE, false)
             .apply()
         val toolbarText = "Let's go, $name!"
-        viewModel.title.postValue(toolbarText)
+
         return true
     }
 
