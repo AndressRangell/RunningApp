@@ -2,10 +2,12 @@ package andres.rangel.runningapp.ui
 
 import andres.rangel.runningapp.R
 import andres.rangel.runningapp.databinding.ActivityMainBinding
+import andres.rangel.runningapp.ui.viewmodel.MainViewModel
 import andres.rangel.runningapp.utils.Constants.ACTION_SHOW_TRACKING_FRAGMENT
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -15,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,10 @@ class MainActivity : AppCompatActivity() {
                     else -> binding.bottomNavigationView.visibility = View.GONE
                 }
             }
+
+        viewModel.title.observe(this) {
+            binding.tvToolbarTitle.text = it
+        }
 
     }
 
