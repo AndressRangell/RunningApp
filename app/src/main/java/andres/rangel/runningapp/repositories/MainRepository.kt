@@ -5,7 +5,7 @@ import andres.rangel.runningapp.db.RunDao
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
-    val runDao: RunDao
+    private val runDao: RunDao
 ) {
 
     suspend fun insertRun(run: Run) = runDao.insertRun(run)

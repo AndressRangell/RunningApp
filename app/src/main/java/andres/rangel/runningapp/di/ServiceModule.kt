@@ -32,7 +32,7 @@ object ServiceModule {
     @Provides
     fun provideMainActivityPendingIntent(
         @ApplicationContext context: Context
-    ) = PendingIntent.getActivity(
+    ): PendingIntent = PendingIntent.getActivity(
         context,
         0,
         Intent(context, MainActivity::class.java).also {
@@ -51,7 +51,7 @@ object ServiceModule {
         .setOngoing(true)
         .setSmallIcon(R.drawable.ic_runs)
         .setContentTitle("Running App")
-        .setContentText("00:00:00")
+        .setContentText(context.getString(R.string.initial_total_time))
         .setContentIntent(pendingIntent)
 
 }

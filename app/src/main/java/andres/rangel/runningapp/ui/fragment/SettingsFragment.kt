@@ -5,6 +5,7 @@ import andres.rangel.runningapp.databinding.FragmentSettingsBinding
 import andres.rangel.runningapp.utils.Constants
 import andres.rangel.runningapp.utils.Constants.KEY_NAME
 import andres.rangel.runningapp.utils.Constants.KEY_WEIGHT
+import andres.rangel.runningapp.utils.setNameInToolbar
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,8 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private lateinit var binding: FragmentSettingsBinding
@@ -40,16 +43,19 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             if (success) {
                 Snackbar.make(binding.root, "Saved changes", Snackbar.LENGTH_LONG).show()
             } else {
-                Snackbar.make(binding.root, "Please fill out all the fields", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding.root, "Please fill out all the fields", Snackbar.LENGTH_LONG)
+                    .show()
             }
         }
     }
 
-    private fun loadFieldsFromSharedPreferences(){
+    private fun loadFieldsFromSharedPreferences() {
         val name = sharedPreferences.getString(KEY_NAME, "")
         val weight = sharedPreferences.getFloat(KEY_WEIGHT, 80f)
-        binding.etName.setText(name)
-        binding.etWeight.setText(weight.toString())
+        binding.apply {
+            etName.setText(name)
+            etWeight.setText(weight.toString())
+        }
     }
 
     private fun applyChangesToSharedPreferences(): Boolean {
@@ -63,7 +69,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             .putFloat(KEY_WEIGHT, weight.toFloat())
             .putBoolean(Constants.KEY_FIRST_TIME_TOGGLE, false)
             .apply()
-        val toolbarText = "Let's go, $name!"
+
+        activity.setNameInToolbar(name)
 
         return true
     }

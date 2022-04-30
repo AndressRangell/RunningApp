@@ -38,4 +38,7 @@
     <string name="statistics">Statistics</string>
     <string name="setting">Setting</string>
     <string name="cancel_run">Cancel Run</string>
+    <string name="duration">DURATION</string>
+    <string name="avg_speed">AVG SPEED</string>
+    <string name="calories_burned">CALORIES BURNED</string>
 </resources>

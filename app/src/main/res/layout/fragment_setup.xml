@@ -53,8 +53,8 @@
             android:id="@+id/etWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/your_weight"
             android:ems="10"
+            android:hint="@string/your_weight"
             android:inputType="numberDecimal" />
 
     </com.google.android.material.textfield.TextInputLayout>

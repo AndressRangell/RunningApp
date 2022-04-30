@@ -4,7 +4,6 @@ import andres.rangel.runningapp.db.Run
 import andres.rangel.runningapp.repositories.MainRepository
 import andres.rangel.runningapp.utils.SortType
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

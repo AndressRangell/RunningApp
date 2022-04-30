@@ -1,6 +1,5 @@
 package andres.rangel.runningapp.utils
 
-import andres.rangel.runningapp.R
 import android.graphics.Color
 
 object Constants {

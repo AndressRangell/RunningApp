@@ -1,9 +1,7 @@
 package andres.rangel.runningapp.services
 
 import andres.rangel.runningapp.R
-import andres.rangel.runningapp.ui.MainActivity
 import andres.rangel.runningapp.utils.Constants.ACTION_PAUSE_SERVICE
-import andres.rangel.runningapp.utils.Constants.ACTION_SHOW_TRACKING_FRAGMENT
 import andres.rangel.runningapp.utils.Constants.ACTION_START_OR_RESUME_SERVICE
 import andres.rangel.runningapp.utils.Constants.ACTION_STOP_SERVICE
 import andres.rangel.runningapp.utils.Constants.FASTEST_LOCATION_INTERVAL
@@ -176,7 +174,7 @@ class TrackingService : LifecycleService() {
             set(currentNotificationBuilder, ArrayList<NotificationCompat.Action>())
         }
 
-        if(!serviceKilled) {
+        if (!serviceKilled) {
             currentNotificationBuilder = baseNotificationBuilder.addAction(
                 R.drawable.ic_pause,
                 notificationActionText,
@@ -206,7 +204,7 @@ class TrackingService : LifecycleService() {
         }
     }
 
-    val locationCallback = object : LocationCallback() {
+    private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(result: LocationResult) {
             super.onLocationResult(result)
             if (isTracking.value!!) {
@@ -246,7 +244,7 @@ class TrackingService : LifecycleService() {
         startForeground(NOTIFICATION_ID, baseNotificationBuilder.build())
 
         timeRunInSeconds.observe(this) {
-            if(!serviceKilled){
+            if (!serviceKilled) {
                 val notification = currentNotificationBuilder.setContentText(
                     TrackingUtility.getFormattedStopWatchTime(it * 1000L)
                 )

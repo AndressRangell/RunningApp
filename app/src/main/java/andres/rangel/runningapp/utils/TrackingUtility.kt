@@ -28,7 +28,7 @@ object TrackingUtility {
 
     fun calculatePolylineLength(polyline: Polyline): Float {
         var distance = 0f
-        for(i in 0..polyline.size - 2) {
+        for (i in 0..polyline.size - 2) {
             val position1 = polyline[i]
             val position2 = polyline[i + 1]
             val result = FloatArray(1)
