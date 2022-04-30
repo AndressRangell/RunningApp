@@ -26,6 +26,8 @@
         android:layout_marginHorizontal="50dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:boxStrokeColor="@color/floatButton"
+        app:hintTextColor="@color/floatButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,6 +36,7 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/TextViewStyle"
             android:ems="10"
             android:hint="@string/your_name"
             android:inputType="textPersonName" />
@@ -45,6 +48,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
+        app:boxStrokeColor="@color/floatButton"
+        app:hintTextColor="@color/floatButton"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/tilName"
         app:layout_constraintTop_toBottomOf="@+id/tilName">
@@ -86,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/continued"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/floatButton"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
