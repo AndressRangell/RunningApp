@@ -82,7 +82,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
             runAdapter.submitList(it)
         }
 
-        binding.btnFavorites.setOnClickListener {
+        binding.btnNewRun.setOnClickListener {
             findNavController().navigate(R.id.action_runFragment_to_trackingFragment)
         }
     }

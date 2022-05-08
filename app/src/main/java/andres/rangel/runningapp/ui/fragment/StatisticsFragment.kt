@@ -104,7 +104,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
                 binding.apply {
                     barChart.data = BarData(barDataSet)
                     barChart.marker =
-                        CustomMarkerView(it.reversed(), requireContext(), R.layout.marker_view)
+                        CustomMarkerView(it, requireContext(), R.layout.marker_view)
                     barChart.invalidate()
                 }
             }

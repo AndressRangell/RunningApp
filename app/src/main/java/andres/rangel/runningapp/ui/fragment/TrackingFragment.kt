@@ -255,6 +255,7 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
     override fun onResume() {
         super.onResume()
         binding.mapView.onResume()
+        addAllPolylines()
     }
 
     override fun onStart() {
